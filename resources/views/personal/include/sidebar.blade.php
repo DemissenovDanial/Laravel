@@ -2,6 +2,14 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <ul class="pt-3 nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('main') }}">
+                    <i class="nav-icon fas fa-arrow-left"></i>
+                    <p>
+                        Блог
+                    </p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="{{ route('personal') }}" class="nav-link">
                     <i class="nav-icon fas fa-home"></i>

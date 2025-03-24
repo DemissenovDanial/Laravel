@@ -36,12 +36,27 @@
                             <a class="nav-link" href="{{ route('personal') }}">Личный кабинет <span class="sr-only">(current)</span></a>
                         </li>
                         @endauth
+                        @auth
+                        @if(auth()->user()->role=== \App\Models\User::ROLE_ADMIN)
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('admin') }}">Страница администратора <span class="sr-only">(current)</span></a>
+                        </li>
+                        @endif
+                        @endauth
                         @guest()
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('personal') }}">Войти <span class="sr-only">(current)</span></a>
                         </li>
                         @endguest
                     </ul>
+                    @auth
+                    <li class="nav-item d-flex ml-5">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <input class="btn btn-outline-primary" type="submit" value="Выйти">
+                        </form>
+                    </li>
+                    @endauth
                 </div>
             </nav>
         </div>

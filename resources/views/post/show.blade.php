@@ -30,6 +30,7 @@
                             @else
                             <i class="far fa-heart"></i>
                             @endif
+                            @endauth
                         </button>
                     </form>
                     @endauth

@@ -12,7 +12,7 @@ class PostController extends BaseController
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with(['category', 'tags', 'comments.user'])->get();
         return view('admin.post.index', compact('posts'));
     }
 
