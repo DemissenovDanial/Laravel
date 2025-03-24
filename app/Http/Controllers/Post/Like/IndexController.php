@@ -16,7 +16,7 @@ class IndexController extends Controller
 
     public function store(Post $post){
         Auth::user()->LikedPost()->toggle($post->id);
-        return redirect()->route('post.index', $post->id);
+        return redirect()->back();
     }
 
     public function deleteComment(Comment $comment){

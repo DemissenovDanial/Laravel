@@ -11,9 +11,18 @@ use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Personal\Main\IndexController as PersonalIndexController;
 use App\Http\Controllers\Post\Main\IndexController as CommentsController;
 use App\Http\Controllers\Post\Like\IndexController as LikeIndexController;
+use App\Http\Controllers\Category\IndexController as CategoryIndexController;
+use App\Http\Controllers\Category\Post\IndexController as CategoryPostIndexController;
 
 Route::group([], function(){
     Route::get('/', [MainIndexController::class, 'index'])->name('main');
+});
+
+Route::group(['prefix'=>'categories'], function(){
+    Route::get('/', [CategoryIndexController::class, 'index'])->name('category.index');
+    Route::group(['prefix'=>'{category}/posts'], function(){
+        Route::get('/', [CategoryPostIndexController::class, 'index'])->name('category.post.index');
+    });
 });
 
 Route::group(['prefix'=>'posts'], function(){

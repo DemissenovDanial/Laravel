@@ -14,18 +14,25 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <p class="blog-post-category">{{ $post->category->title }}</p>
-                        <form action="{{ route('post.like.store', $post->id) }}" method="post">
+                        @auth()
+                        <form action="{{ route('post.like.store', $post->id) }}" method="POST">
                             @csrf
+                            <span>{{ $post->liked_users_count }}</span>
                             <button type="submit" class="border-0 bg-transparrent">
-                                @auth()
                                 @if(auth()->user()->LikedPost()->where('post_id', $post->id)->exists())
-                                    <i class="fas fa-heart"></i>
+                                <i class="fas fa-heart"></i>
                                 @else
-                                    <i class="far fa-heart"></i>
+                                <i class="far fa-heart"></i>
                                 @endif
-                                @endauth
                             </button>
                         </form>
+                        @endauth
+                        @guest()
+                        <div>
+                            <span>{{ $post->liked_users_count }}</span>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        @endguest
                     </div>
                     <a href="{{route('post.show', $post->id)}}" class="blog-post-permalink">
                         <h6 class="blog-post-title">{{ $post->title }}</h6>
@@ -47,6 +54,25 @@
                             <a href="{{route('post.show', $post->id)}}" class="blog-post-permalink">
                                 <h6 class="blog-post-title">{{ $post->title }}</h6>
                             </a>
+                            @auth()
+                            <form action="{{ route('post.like.store', $post->id) }}" method="POST">
+                                @csrf
+                                <span>{{ $post->liked_users_count }}</span>
+                                <button type="submit" class="border-0 bg-transparrent">
+                                    @if(auth()->user()->LikedPost()->where('post_id', $post->id)->exists())
+                                    <i class="fas fa-heart"></i>
+                                    @else
+                                    <i class="far fa-heart"></i>
+                                    @endif
+                                </button>
+                            </form>
+                            @endauth
+                            @guest()
+                            <div>
+                                <span>{{ $post->liked_users_count }}</span>
+                                <i class="far fa-heart"></i>
+                            </div>
+                            @endguest
                         </div>
                         @endforeach
                     </div>
@@ -64,6 +90,25 @@
                                     <h6 class="post-title">{{ $post->title }}</h6>
                                 </div>
                             </a>
+                            @auth()
+                            <form action="{{ route('post.like.store', $post->id) }}" method="POST">
+                                @csrf
+                                <span>{{ $post->liked_users_count }}</span>
+                                <button type="submit" class="border-0 bg-transparrent">
+                                    @if(auth()->user()->LikedPost()->where('post_id', $post->id)->exists())
+                                    <i class="fas fa-heart"></i>
+                                    @else
+                                    <i class="far fa-heart"></i>
+                                    @endif
+                                </button>
+                            </form>
+                            @endauth
+                            @guest()
+                            <div>
+                                <span>{{ $post->liked_users_count }}</span>
+                                <i class="far fa-heart"></i>
+                            </div>
+                            @endguest
                         </li>
                         @endforeach
                     </ul>

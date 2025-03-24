@@ -28,6 +28,9 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('main') }}">Блог <span class="sr-only">(current)</span></a>
                         </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('category.index') }}">Категории <span class="sr-only">(current)</span></a>
+                        </li>
                         @auth()
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('personal') }}">Личный кабинет <span class="sr-only">(current)</span></a>
